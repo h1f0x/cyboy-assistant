@@ -1,0 +1,21 @@
+MITRE ATT&CK Technique: Container API (T1552.007)
+
+Description:
+Adversaries may gather credentials via APIs within a containers environment. APIs in these environments, such as the Docker API and Kubernetes APIs, allow a user to remotely manage their container resources and cluster components.(Citation: Docker API)(Citation: Kubernetes API)
+
+An adversary may access the Docker API to collect logs that contain credentials to cloud, container, and various other resources in the environment.(Citation: Unit 42 Unsecured Docker Daemons) An adversary with sufficient permissions, such as via a pod's service account, may also use the Kubernetes API to retrieve credentials from the Kubernetes API server. These credentials may include those needed for Docker API authentication or secrets from Kubernetes cluster components. 
+
+Detection:
+Establish centralized logging for the activity of container and Kubernetes cluster components. Monitor logs for actions that could be taken to gather credentials to container and cloud infrastructure, including the use of discovery API calls by new or unexpected users and APIs that access Docker logs.
+
+It may be possible to detect adversary use of credentials they have obtained such as in [Valid Accounts](https://attack.mitre.org/techniques/T1078).
+
+Tactics: credential-access
+Required Permissions: User
+Effective Permissions: Administrator
+
+References:
+- Docker. (n.d.). Docker Engine API v1.41 Reference. Retrieved March 31, 2021. [https://docs.docker.com/engine/api/v1.41/]
+- The Kubernetes Authors. (n.d.). The Kubernetes API. Retrieved March 29, 2021. [https://kubernetes.io/docs/concepts/overview/kubernetes-api/]
+- Chen, J.. (2020, January 29). Attacker's Tactics and Techniques in Unsecured Docker Daemons Revealed. Retrieved March 31, 2021. [https://unit42.paloaltonetworks.com/attackers-tactics-and-techniques-in-unsecured-docker-daemons-revealed/]
+

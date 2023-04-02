@@ -1,0 +1,22 @@
+MITRE ATT&CK Technique: Container Administration Command (T1609)
+
+Description:
+Adversaries may abuse a container administration service to execute commands within a container. A container administration service such as the Docker daemon, the Kubernetes API server, or the kubelet may allow remote management of containers within an environment.(Citation: Docker Daemon CLI)(Citation: Kubernetes API)(Citation: Kubernetes Kubelet)
+
+In Docker, adversaries may specify an entrypoint during container deployment that executes a script or command, or they may use a command such as <code>docker exec</code> to execute a command within a running container.(Citation: Docker Entrypoint)(Citation: Docker Exec) In Kubernetes, if an adversary has sufficient permissions, they may gain remote execution in a container in the cluster via interaction with the Kubernetes API server, the kubelet, or by running a command such as <code>kubectl exec</code>.(Citation: Kubectl Exec Get Shell)
+
+Detection:
+Container administration service activities and executed commands can be captured through logging of process execution with command-line arguments on the container and the underlying host. In Docker, the daemon log provides insight into events at the daemon and container service level. Kubernetes system component logs may also detect activities running in and out of containers in the cluster. 
+
+Tactics: execution
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Docker. (n.d.). DockerD CLI. Retrieved March 29, 2021. [https://docs.docker.com/engine/reference/commandline/dockerd/]
+- The Kubernetes Authors. (n.d.). The Kubernetes API. Retrieved March 29, 2021. [https://kubernetes.io/docs/concepts/overview/kubernetes-api/]
+- The Kubernetes Authors. (n.d.). Kubelet. Retrieved March 29, 2021. [https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/]
+- Docker. (n.d.). Docker run reference. Retrieved March 29, 2021. [https://docs.docker.com/engine/reference/run/#entrypoint-default-command-to-execute-at-runtime]
+- Docker. (n.d.). Docker Exec. Retrieved March 29, 2021. [https://docs.docker.com/engine/reference/commandline/exec/]
+- The Kubernetes Authors. (n.d.). Get a Shell to a Running Container. Retrieved March 29, 2021. [https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/]
+

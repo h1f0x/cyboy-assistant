@@ -1,0 +1,14 @@
+MITRE ATT&CK Technique: Remote Email Collection (T1114.002)
+
+Description:
+Adversaries may target an Exchange server, Office 365, or Google Workspace to collect sensitive information. Adversaries may leverage a user's credentials and interact directly with the Exchange server to acquire information from within a network. Adversaries may also access externally facing Exchange services, Office 365, or Google Workspace to access email using credentials or access tokens. Tools such as [MailSniper](https://attack.mitre.org/software/S0413) can be used to automate searches for specific keywords.
+
+Detection:
+Monitor for unusual login activity from unknown or abnormal locations, especially for privileged accounts (ex: Exchange administrator account).
+
+Tactics: collection
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+

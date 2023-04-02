@@ -1,0 +1,18 @@
+MITRE ATT&CK Technique: Compromise Client Software Binary (T1554)
+
+Description:
+Adversaries may modify client software binaries to establish persistent access to systems. Client software enables users to access services provided by a server. Common client software types are SSH clients, FTP clients, email clients, and web browsers.
+
+Adversaries may make modifications to client software binaries to carry out malicious tasks when those applications are in use. For example, an adversary may copy source code for the client software, add a backdoor, compile for the target, and replace the legitimate application binary (or support files) with the backdoored one. Since these applications may be routinely executed by the user, the adversary can leverage this for persistent access to the host.
+
+Detection:
+Collect and analyze signing certificate metadata and check signature validity on software that executes within the environment. Look for changes to client software that do not correlate with known software or patch cycles. 
+
+Consider monitoring for anomalous behavior from client applications, such as atypical module loads, file reads/writes, or network connections.
+
+Tactics: persistence
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+

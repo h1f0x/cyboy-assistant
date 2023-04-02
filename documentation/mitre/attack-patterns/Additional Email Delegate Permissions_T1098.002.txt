@@ -1,0 +1,31 @@
+MITRE ATT&CK Technique: Additional Email Delegate Permissions (T1098.002)
+
+Description:
+Adversaries may grant additional permission levels to maintain persistent access to an adversary-controlled email account. 
+
+For example, the <code>Add-MailboxPermission</code> [PowerShell](https://attack.mitre.org/techniques/T1059/001) cmdlet, available in on-premises Exchange and in the cloud-based service Office 365, adds permissions to a mailbox.(Citation: Microsoft - Add-MailboxPermission)(Citation: FireEye APT35 2018)(Citation: Crowdstrike Hiding in Plain Sight 2018) In Google Workspace, delegation can be enabled via the Google Admin console and users can delegate accounts via their Gmail settings.(Citation: Gmail Delegation)(Citation: Google Ensuring Your Information is Safe) 
+
+Adversaries may also assign mailbox folder permissions through individual folder permissions or roles. In Office 365 environments, adversaries may assign the Default or Anonymous user permissions or roles to the Top of Information Store (root), Inbox, or other mailbox folders. By assigning one or both user permissions to a folder, the adversary can utilize any other account in the tenant to maintain persistence to the target user’s mail folders.(Citation: Remediation and Hardening Strategies for Microsoft 365 to Defend Against UNC2452)
+
+This may be used in persistent threat incidents as well as BEC (Business Email Compromise) incidents where an adversary can add [Additional Cloud Roles](https://attack.mitre.org/techniques/T1098/003) to the accounts they wish to compromise. This may further enable use of additional techniques for gaining access to systems. For example, compromised business accounts are often used to send messages to other accounts in the network of the target business while creating inbox rules (ex: [Internal Spearphishing](https://attack.mitre.org/techniques/T1534)), so the messages evade spam/phishing detection mechanisms.(Citation: Bienstock, D. - Defending O365 - 2019)
+
+Detection:
+Monitor for unusual Exchange and Office 365 email account permissions changes that may indicate excessively broad permissions being granted to compromised accounts.
+
+Enable the UpdateFolderPermissions action for all logon types. The mailbox audit log will forward folder permission modification events to the Unified Audit Log. Create rules to alert on ModifyFolderPermissions operations where the Anonymous or Default user is assigned permissions other than None. 
+
+A larger than normal volume of emails sent from an account and similar phishing emails sent from  real accounts within a network may be a sign that an account was compromised and attempts to leverage access with modified email permissions is occurring.
+
+Tactics: persistence
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Bienstock, D.. (2019). BECS and Beyond: Investigating and Defending O365. Retrieved September 13, 2019. [https://www.slideshare.net/DouglasBienstock/shmoocon-2019-becs-and-beyond-investigating-and-defending-office-365]
+- Crowdstrike. (2018, July 18). Hiding in Plain Sight: Using the Office 365 Activities API to Investigate Business Email Compromises. Retrieved January 19, 2020. [https://www.crowdstrike.com/blog/hiding-in-plain-sight-using-the-office-365-activities-api-to-investigate-business-email-compromises/]
+- Google. (2011, June 1). Ensuring your information is safe online. Retrieved April 1, 2022. [https://googleblog.blogspot.com/2011/06/ensuring-your-information-is-safe.html]
+- Google. (n.d.). Turn Gmail delegation on or off. Retrieved April 1, 2022. [https://support.google.com/a/answer/7223765?hl=en]
+- Mandiant. (2018). Mandiant M-Trends 2018. Retrieved July 9, 2018. [https://www.fireeye.com/content/dam/collateral/en/mtrends-2018.pdf]
+- Microsoft. (n.d.). Add-Mailbox Permission. Retrieved September 13, 2019. [https://docs.microsoft.com/en-us/powershell/module/exchange/mailboxes/add-mailboxpermission?view=exchange-ps]
+- Mike Burns, Matthew McWhirt, Douglas Bienstock, Nick Bennett. (2021, January 19). Remediation and Hardening Strategies for Microsoft 365 to Defend Against UNC2452. Retrieved September 25, 2021. [https://www.fireeye.com/blog/threat-research/2021/01/remediation-and-hardening-strategies-for-microsoft-365-to-defend-against-unc2452.html]
+

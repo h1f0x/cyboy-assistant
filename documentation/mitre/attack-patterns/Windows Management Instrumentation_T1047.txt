@@ -1,0 +1,19 @@
+MITRE ATT&CK Technique: Windows Management Instrumentation (T1047)
+
+Description:
+Adversaries may abuse Windows Management Instrumentation (WMI) to execute malicious commands and payloads. WMI is an administration feature that provides a uniform environment to access Windows system components. The WMI service enables both local and remote access, though the latter is facilitated by [Remote Services](https://attack.mitre.org/techniques/T1021) such as [Distributed Component Object Model](https://attack.mitre.org/techniques/T1021/003) (DCOM) and [Windows Remote Management](https://attack.mitre.org/techniques/T1021/006) (WinRM).(Citation: MSDN WMI) Remote WMI over DCOM operates using port 135, whereas WMI over WinRM operates over port 5985 when using HTTP and 5986 for HTTPS.(Citation: MSDN WMI)(Citation: FireEye WMI 2015)
+
+An adversary can use WMI to interact with local and remote systems and use it as a means to execute various behaviors, such as gathering information for Discovery as well as remote Execution of files as part of Lateral Movement. (Citation: FireEye WMI SANS 2015) (Citation: FireEye WMI 2015)
+
+Detection:
+Monitor network traffic for WMI connections; the use of WMI in environments that do not typically use WMI may be suspect. Perform process monitoring to capture command-line arguments of "wmic" and detect commands that are used to perform remote behavior. (Citation: FireEye WMI 2015)
+
+Tactics: execution
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Ballenthin, W., et al. (2015). Windows Management Instrumentation (WMI) Offense, Defense, and Forensics. Retrieved March 30, 2016. [https://www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf]
+- Devon Kerr. (2015). There's Something About WMI. Retrieved May 4, 2020. [https://www.fireeye.com/content/dam/fireeye-www/services/pdfs/sans-dfir-2015.pdf]
+- Microsoft. (n.d.). Windows Management Instrumentation. Retrieved April 27, 2016. [https://msdn.microsoft.com/en-us/library/aa394582.aspx]
+

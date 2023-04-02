@@ -1,0 +1,34 @@
+MITRE ATT&CK Technique: PowerShell (T1086)
+
+Description:
+PowerShell is a powerful interactive command-line interface and scripting environment included in the Windows operating system. (Citation: TechNet PowerShell) Adversaries can use PowerShell to perform a number of actions, including discovery of information and execution of code. Examples include the Start-Process cmdlet which can be used to run an executable and the Invoke-Command cmdlet which runs a command locally or on a remote computer. 
+
+PowerShell may also be used to download and run executables from the Internet, which can be executed from disk or in memory without touching disk.
+
+Administrator permissions are required to use PowerShell to connect to remote systems.
+
+A number of PowerShell-based offensive testing tools are available, including [Empire](https://attack.mitre.org/software/S0363),  PowerSploit, (Citation: Powersploit) and PSAttack. (Citation: Github PSAttack)
+
+PowerShell commands/scripts can also be executed without directly invoking the powershell.exe binary through interfaces to PowerShell's underlying System.Management.Automation assembly exposed through the .NET framework and Windows Common Language Interface (CLI). (Citation: Sixdub PowerPick Jan 2016)(Citation: SilentBreak Offensive PS Dec 2015) (Citation: Microsoft PSfromCsharp APR 2014)
+
+Detection:
+If proper execution policy is set, adversaries will likely be able to define their own execution policy if they obtain administrator or system access, either through the Registry or at the command line. This change in policy on a system may be a way to detect malicious use of PowerShell. If PowerShell is not used in an environment, then simply looking for PowerShell execution may detect malicious activity.
+
+Monitor for loading and/or execution of artifacts associated with PowerShell specific assemblies, such as System.Management.Automation.dll (especially to unusual process names/locations). (Citation: Sixdub PowerPick Jan 2016)(Citation: SilentBreak Offensive PS Dec 2015)
+
+It is also beneficial to turn on PowerShell logging to gain increased fidelity in what occurs during execution (which is applied to .NET invocations). (Citation: Malware Archaeology PowerShell Cheat Sheet) PowerShell 5.0 introduced enhanced logging capabilities, and some of those features have since been added to PowerShell 4.0. Earlier versions of PowerShell do not have many logging features. (Citation: FireEye PowerShell Logging 2016) An organization can gather PowerShell execution details in a data analytic platform to supplement it with other data.
+
+Tactics: execution
+Required Permissions: User
+Effective Permissions: Administrator
+
+References:
+- Microsoft. (n.d.). Windows PowerShell Scripting. Retrieved April 28, 2016. [https://technet.microsoft.com/en-us/scriptcenter/dd742419.aspx]
+- PowerSploit. (n.d.). Retrieved December 4, 2014. [https://github.com/mattifestation/PowerSploit]
+- Haight, J. (2016, April 21). PS>Attack. Retrieved June 1, 2016. [https://github.com/jaredhaight/PSAttack]
+- Warner, J.. (2015, January 6). Inexorable PowerShell – A Red Teamer’s Tale of Overcoming Simple AppLocker Policies. Retrieved December 8, 2018. [http://www.sixdub.net/?p=367]
+- Christensen, L.. (2015, December 28). The Evolution of Offensive PowerShell Invocation. Retrieved December 8, 2018. [https://silentbreaksecurity.com/powershell-jobs-without-powershell-exe/]
+- Babinec, K. (2014, April 28). Executing PowerShell scripts from C#. Retrieved April 22, 2019. [https://blogs.msdn.microsoft.com/kebab/2014/04/28/executing-powershell-scripts-from-c/]
+- Malware Archaeology. (2016, June). WINDOWS POWERSHELL LOGGING CHEAT SHEET - Win 7/Win 2008 or later. Retrieved June 24, 2016. [http://www.malwarearchaeology.com/s/Windows-PowerShell-Logging-Cheat-Sheet-ver-June-2016-v2.pdf]
+- Dunwoody, M. (2016, February 11). GREATER VISIBILITY THROUGH POWERSHELL LOGGING. Retrieved February 16, 2016. [https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html]
+

@@ -1,0 +1,20 @@
+MITRE ATT&CK Technique: Rootkit (T1014)
+
+Description:
+Adversaries may use rootkits to hide the presence of programs, files, network connections, services, drivers, and other system components. Rootkits are programs that hide the existence of malware by intercepting/hooking and modifying operating system API calls that supply system information. (Citation: Symantec Windows Rootkits) 
+
+Rootkits or rootkit enabling functionality may reside at the user or kernel level in the operating system or lower, to include a hypervisor, Master Boot Record, or [System Firmware](https://attack.mitre.org/techniques/T1542/001). (Citation: Wikipedia Rootkit) Rootkits have been seen for Windows, Linux, and Mac OS X systems. (Citation: CrowdStrike Linux Rootkit) (Citation: BlackHat Mac OSX Rootkit)
+
+Detection:
+Some rootkit protections may be built into anti-virus or operating system software. There are dedicated rootkit detection tools that look for specific types of rootkit behavior. Monitor for the existence of unrecognized DLLs, devices, services, and changes to the MBR. (Citation: Wikipedia Rootkit)
+
+Tactics: defense-evasion
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Kurtz, G. (2012, November 19). HTTP iframe Injecting Linux Rootkit. Retrieved December 21, 2017. [https://www.crowdstrike.com/blog/http-iframe-injecting-linux-rootkit/]
+- Pan, M., Tsai, S. (2014). You can’t see me: A Mac OS X Rootkit uses the tricks you haven't known yet. Retrieved December 21, 2017. [http://www.blackhat.com/docs/asia-14/materials/Tsai/WP-Asia-14-Tsai-You-Cant-See-Me-A-Mac-OS-X-Rootkit-Uses-The-Tricks-You-Havent-Known-Yet.pdf]
+- Symantec. (n.d.). Windows Rootkit Overview. Retrieved December 21, 2017. [https://www.symantec.com/avcenter/reference/windows.rootkit.overview.pdf]
+- Wikipedia. (2016, June 1). Rootkit. Retrieved June 2, 2016. [https://en.wikipedia.org/wiki/Rootkit]
+

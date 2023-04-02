@@ -1,0 +1,29 @@
+MITRE ATT&CK Technique: Domain Policy Modification (T1484)
+
+Description:
+Adversaries may modify the configuration settings of a domain to evade defenses and/or escalate privileges in domain environments. Domains provide a centralized means of managing how computer resources (ex: computers, user accounts) can act, and interact with each other, on a network. The policy of the domain also includes configuration settings that may apply between domains in a multi-domain/forest environment. Modifications to domain settings may include altering domain Group Policy Objects (GPOs) or changing trust settings for domains, including federation trusts.
+
+With sufficient permissions, adversaries can modify domain policy settings. Since domain configuration settings control many of the interactions within the Active Directory (AD) environment, there are a great number of potential attacks that can stem from this abuse. Examples of such abuse include modifying GPOs to push a malicious [Scheduled Task](https://attack.mitre.org/techniques/T1053/005) to computers throughout the domain environment(Citation: ADSecurity GPO Persistence 2016)(Citation: Wald0 Guide to GPOs)(Citation: Harmj0y Abusing GPO Permissions) or modifying domain trusts to include an adversary controlled domain where they can control access tokens that will subsequently be accepted by victim domain resources.(Citation: Microsoft - Customer Guidance on Recent Nation-State Cyber Attacks) Adversaries can also change configuration settings within the AD environment to implement a [Rogue Domain Controller](https://attack.mitre.org/techniques/T1207).
+
+Adversaries may temporarily modify domain policy, carry out a malicious action(s), and then revert the change to remove suspicious indicators.
+
+Detection:
+It may be possible to detect domain policy modifications using Windows event logs. Group policy modifications, for example, may be logged under a variety of Windows event IDs for modifying, creating, undeleting, moving, and deleting directory service objects (Event ID 5136, 5137, 5138, 5139, 5141 respectively). Monitor for modifications to domain trust settings, such as when a user or application modifies the federation settings on the domain or updates domain authentication from Managed to Federated via ActionTypes <code>Set federation settings on domain</code> and <code>Set domain authentication</code>.(Citation: Microsoft - Azure Sentinel ADFSDomainTrustMods)(Citation: Microsoft 365 Defender Solorigate) This may also include monitoring for Event ID 307 which can be correlated to relevant Event ID 510 with the same Instance ID for change details.(Citation: Sygnia Golden SAML)(Citation: CISA SolarWinds Cloud Detection)
+
+Consider monitoring for commands/cmdlets and command-line arguments that may be leveraged to modify domain policy settings.(Citation: Microsoft - Update or Repair Federated domain) Some domain policy modifications, such as changes to federation settings, are likely to be rare.(Citation: Microsoft 365 Defender Solorigate)
+
+Tactics: defense-evasion, privilege-escalation
+Required Permissions: Administrator
+Effective Permissions: User
+
+References:
+- Metcalf, S. (2016, March 14). Sneaky Active Directory Persistence #17: Group Policy. Retrieved March 5, 2019. [https://adsecurity.org/?p=2716]
+- Robbins, A. (2018, April 2). A Red Teamer’s Guide to GPOs and OUs. Retrieved March 5, 2019. [https://wald0.com/?p=179]
+- Schroeder, W. (2016, March 17). Abusing GPO Permissions. Retrieved March 5, 2019. [http://www.harmj0y.net/blog/redteaming/abusing-gpo-permissions/]
+- MSRC. (2020, December 13). Customer Guidance on Recent Nation-State Cyber Attacks. Retrieved December 30, 2020. [https://msrc-blog.microsoft.com/2020/12/13/customer-guidance-on-recent-nation-state-cyber-attacks/]
+- Microsoft. (2020, December). Azure Sentinel Detections. Retrieved December 30, 2020. [https://github.com/Azure/Azure-Sentinel/blob/master/Detections/AuditLogs/ADFSDomainTrustMods.yaml]
+- Microsoft 365 Defender Team. (2020, December 28). Using Microsoft 365 Defender to protect against Solorigate. Retrieved January 7, 2021. [https://www.microsoft.com/security/blog/2020/12/28/using-microsoft-365-defender-to-coordinate-protection-against-solorigate/]
+- Sygnia. (2020, December). Detection and Hunting of Golden SAML Attack. Retrieved January 6, 2021. [https://www.sygnia.co/golden-saml-advisory]
+- CISA. (2021, January 8). Detecting Post-Compromise Threat Activity in Microsoft Cloud Environments. Retrieved January 8, 2021. [https://us-cert.cisa.gov/ncas/alerts/aa21-008a]
+- Microsoft. (2020, September 14). Update or repair the settings of a federated domain in Office 365, Azure, or Intune. Retrieved December 30, 2020. [https://docs.microsoft.com/en-us/office365/troubleshoot/active-directory/update-federated-domain-office-365]
+

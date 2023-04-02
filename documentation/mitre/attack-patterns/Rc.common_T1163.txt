@@ -1,0 +1,18 @@
+MITRE ATT&CK Technique: Rc.common (T1163)
+
+Description:
+During the boot process, macOS executes <code>source /etc/rc.common</code>, which is a shell script containing various utility functions. This file also defines routines for processing command-line arguments and for gathering system settings, and is thus recommended to include in the start of Startup Item Scripts (Citation: Startup Items). In macOS and OS X, this is now a deprecated technique in favor of launch agents and launch daemons, but is currently still used.
+
+Adversaries can use the rc.common file as a way to hide code for persistence that will execute on each reboot as the root user (Citation: Methods of Mac Malware Persistence).
+
+Detection:
+The <code>/etc/rc.common</code> file can be monitored to detect changes from the company policy. Monitor process execution resulting from the rc.common script for unusual or unknown applications or behavior.
+
+Tactics: persistence
+Required Permissions: root
+Effective Permissions: Unknown
+
+References:
+- Apple. (2016, September 13). Startup Items. Retrieved July 11, 2017. [https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/StartupItems.html]
+- Patrick Wardle. (2014, September). Methods of Malware Persistence on Mac OS X. Retrieved July 5, 2017. [https://www.virusbulletin.com/uploads/pdf/conference/vb2014/VB2014-Wardle.pdf]
+

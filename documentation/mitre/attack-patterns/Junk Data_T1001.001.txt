@@ -1,0 +1,15 @@
+MITRE ATT&CK Technique: Junk Data (T1001.001)
+
+Description:
+Adversaries may add junk data to protocols used for command and control to make detection more difficult. By adding random or meaningless data to the protocols used for command and control, adversaries can prevent trivial methods for decoding, deciphering, or otherwise analyzing the traffic. Examples may include appending/prepending data with junk characters or writing junk characters between significant characters. 
+
+Detection:
+Analyze network data for uncommon data flows (e.g., a client sending significantly more data than it receives from a server). Processes utilizing the network that do not normally have network communication or have never been seen before are suspicious. Analyze packet contents to detect communications that do not follow the expected protocol behavior for the port that is being used.(Citation: University of Birmingham C2)
+
+Tactics: command-and-control
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Gardiner, J.,  Cova, M., Nagaraja, S. (2014, February). Command & Control Understanding, Denying and Detecting. Retrieved April 20, 2016. [https://arxiv.org/ftp/arxiv/papers/1408/1408.1136.pdf]
+

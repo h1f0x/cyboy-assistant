@@ -1,0 +1,20 @@
+MITRE ATT&CK Technique: Reduce Key Space (T1600.001)
+
+Description:
+Adversaries may reduce the level of effort required to decrypt data transmitted over the network by reducing the cipher strength of encrypted communications.(Citation: Cisco Synful Knock Evolution)
+
+Adversaries can weaken the encryption software on a compromised network device by reducing the key size used by the software to convert plaintext to ciphertext (e.g., from hundreds or thousands of bytes to just a couple of bytes). As a result, adversaries dramatically reduce the amount of effort needed to decrypt the protected information without the key.
+
+Adversaries may modify the key size used and other encryption parameters using specialized commands in a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) introduced to the system through [Modify System Image](https://attack.mitre.org/techniques/T1601) to change the configuration of the device. (Citation: Cisco Blog Legacy Device Attacks)
+
+Detection:
+There is no documented method for defenders to directly identify behaviors that reduce encryption key space. Detection efforts may be focused on closely related adversary behaviors, such as [Modify System Image](https://attack.mitre.org/techniques/T1601) and [Network Device CLI](https://attack.mitre.org/techniques/T1059/008). Some detection methods require vendor support to aid in investigation.
+
+Tactics: defense-evasion
+Required Permissions: Administrator
+Effective Permissions: Unknown
+
+References:
+- Graham Holmes. (2015, October 8). Evolution of attacks on Cisco IOS devices. Retrieved October 19, 2020. [https://blogs.cisco.com/security/evolution-of-attacks-on-cisco-ios-devices]
+- Omar Santos. (2020, October 19). Attackers Continue to Target Legacy Devices. Retrieved October 20, 2020. [https://community.cisco.com/t5/security-blogs/attackers-continue-to-target-legacy-devices/ba-p/4169954]
+

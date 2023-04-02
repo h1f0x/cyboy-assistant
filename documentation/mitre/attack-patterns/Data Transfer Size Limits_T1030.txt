@@ -1,0 +1,15 @@
+MITRE ATT&CK Technique: Data Transfer Size Limits (T1030)
+
+Description:
+An adversary may exfiltrate data in fixed size chunks instead of whole files or limit packet sizes below certain thresholds. This approach may be used to avoid triggering network data transfer threshold alerts.
+
+Detection:
+Analyze network data for uncommon data flows (e.g., a client sending significantly more data than it receives from a server). If a process maintains a long connection during which it consistently sends fixed size data packets or a process opens connections and sends fixed sized data packets at regular intervals, it may be performing an aggregate data transfer. Processes utilizing the network that do not normally have network communication or have never been seen before are suspicious. Analyze packet contents to detect communications that do not follow the expected protocol behavior for the port that is being used. (Citation: University of Birmingham C2)
+
+Tactics: exfiltration
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Gardiner, J.,  Cova, M., Nagaraja, S. (2014, February). Command & Control Understanding, Denying and Detecting. Retrieved April 20, 2016. [https://arxiv.org/ftp/arxiv/papers/1408/1408.1136.pdf]
+

@@ -1,0 +1,20 @@
+MITRE ATT&CK Technique: Disable Cloud Logs (T1562.008)
+
+Description:
+An adversary may disable cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection. 
+
+Cloud environments allow for collection and analysis of audit and application logs that provide insight into what activities a user does within the environment. If an adversary has sufficient permissions, they can disable logging to avoid detection of their activities. For example, in AWS an adversary may disable CloudWatch/CloudTrail integrations prior to conducting further malicious activity.(Citation: Following the CloudTrail: Generating strong AWS security signals with Sumo Logic)
+
+Detection:
+Monitor logs for API calls to disable logging. In AWS, monitor for: <code>StopLogging</code> and <code>DeleteTrail</code>.(Citation: Stopping CloudTrail from Sending Events to CloudWatch Logs) In GCP, monitor for: <code>google.logging.v2.ConfigServiceV2.UpdateSink</code>.(Citation: Configuring Data Access audit logs)  In Azure, monitor for <code>az monitor diagnostic-settings delete</code>.(Citation: az monitor diagnostic-settings) Additionally, a sudden loss of a log source may indicate that it has been disabled.
+
+Tactics: defense-evasion
+Required Permissions: User
+Effective Permissions: Unknown
+
+References:
+- Dan Whalen. (2019, September 10). Following the CloudTrail: Generating strong AWS security signals with Sumo Logic. Retrieved October 16, 2020. [https://expel.io/blog/following-cloudtrail-generating-aws-security-signals-sumo-logic/]
+- Amazon Web Services. (n.d.). Stopping CloudTrail from Sending Events to CloudWatch Logs. Retrieved October 16, 2020. [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/stop-cloudtrail-from-sending-events-to-cloudwatch-logs.html]
+- Google. (n.d.). Configuring Data Access audit logs. Retrieved October 16, 2020. [https://cloud.google.com/logging/docs/audit/configure-data-access]
+- Microsoft. (n.d.). az monitor diagnostic-settings. Retrieved October 16, 2020. [https://docs.microsoft.com/en-us/cli/azure/monitor/diagnostic-settings?view=azure-cli-latest#az_monitor_diagnostic_settings_delete]
+

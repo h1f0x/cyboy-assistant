@@ -1,0 +1,21 @@
+MITRE ATT&CK Technique: DNS (T1590.002)
+
+Description:
+Adversaries may gather information about the victim's DNS that can be used during targeting. DNS information may include a variety of details, including registered name servers as well as records that outline addressing for a target’s subdomains, mail servers, and other hosts. DNS, MX, TXT, and SPF records may also reveal the use of third party cloud and SaaS providers, such as Office 365, G Suite, Salesforce, or Zendesk.(Citation: Sean Metcalf Twitter DNS Records)
+
+Adversaries may gather this information in various ways, such as querying or otherwise collecting details via [DNS/Passive DNS](https://attack.mitre.org/techniques/T1596/001). DNS information may also be exposed to adversaries via online or other accessible data sets (ex: [Search Open Technical Databases](https://attack.mitre.org/techniques/T1596)).(Citation: DNS Dumpster)(Citation: Circl Passive DNS) Gathering this information may reveal opportunities for other forms of reconnaissance (ex: [Search Open Technical Databases](https://attack.mitre.org/techniques/T1596), [Search Open Websites/Domains](https://attack.mitre.org/techniques/T1593), or [Active Scanning](https://attack.mitre.org/techniques/T1595)), establishing operational resources (ex: [Acquire Infrastructure](https://attack.mitre.org/techniques/T1583) or [Compromise Infrastructure](https://attack.mitre.org/techniques/T1584)), and/or initial access (ex: [External Remote Services](https://attack.mitre.org/techniques/T1133)).
+
+Detection:
+Much of this activity may have a very high occurrence and associated false positive rate, as well as potentially taking place outside the visibility of the target organization, making detection difficult for defenders.
+
+Detection efforts may be focused on related stages of the adversary lifecycle, such as during Initial Access.
+
+Tactics: reconnaissance
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- CIRCL Computer Incident Response Center. (n.d.). Passive DNS. Retrieved October 20, 2020. [https://www.circl.lu/services/passive-dns/]
+- Hacker Target. (n.d.). DNS Dumpster. Retrieved October 20, 2020. [https://dnsdumpster.com/]
+- Sean Metcalf. (2019, May 9). Sean Metcalf Twitter. Retrieved May 27, 2022. [https://twitter.com/PyroTek3/status/1126487227712921600/photo/1]
+

@@ -1,0 +1,15 @@
+MITRE ATT&CK Technique: Exfiltration Over C2 Channel (T1041)
+
+Description:
+Adversaries may steal data by exfiltrating it over an existing command and control channel. Stolen data is encoded into the normal communications channel using the same protocol as command and control communications.
+
+Detection:
+Analyze network data for uncommon data flows (e.g., a client sending significantly more data than it receives from a server). Processes utilizing the network that do not normally have network communication or have never been seen before are suspicious. Analyze packet contents to detect communications that do not follow the expected protocol behavior for the port that is being used. (Citation: University of Birmingham C2)
+
+Tactics: exfiltration
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Gardiner, J.,  Cova, M., Nagaraja, S. (2014, February). Command & Control Understanding, Denying and Detecting. Retrieved April 20, 2016. [https://arxiv.org/ftp/arxiv/papers/1408/1408.1136.pdf]
+

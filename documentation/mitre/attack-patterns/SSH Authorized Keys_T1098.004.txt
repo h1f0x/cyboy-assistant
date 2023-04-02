@@ -1,0 +1,26 @@
+MITRE ATT&CK Technique: SSH Authorized Keys (T1098.004)
+
+Description:
+Adversaries may modify the SSH <code>authorized_keys</code> file to maintain persistence on a victim host. Linux distributions and macOS commonly use key-based authentication to secure the authentication process of SSH sessions for remote management. The <code>authorized_keys</code> file in SSH specifies the SSH keys that can be used for logging into the user account for which the file is configured. This file is usually found in the user's home directory under <code>&lt;user-home&gt;/.ssh/authorized_keys</code>.(Citation: SSH Authorized Keys) Users may edit the system’s SSH config file to modify the directives PubkeyAuthentication and RSAAuthentication to the value “yes” to ensure public key and RSA authentication are enabled. The SSH config file is usually located under <code>/etc/ssh/sshd_config</code>.
+
+Adversaries may modify SSH <code>authorized_keys</code> files directly with scripts or shell commands to add their own adversary-supplied public keys. In cloud environments, adversaries may be able to modify the SSH authorized_keys file of a particular virtual machine via the command line interface or rest API. For example, by using the Google Cloud CLI’s “add-metadata” command an adversary may add SSH keys to a user account.(Citation: Google Cloud Add Metadata)(Citation: Google Cloud Privilege Escalation) Similarly, in Azure, an adversary may update the authorized_keys file of a virtual machine via a PATCH request to the API.(Citation: Azure Update Virtual Machines) This ensures that an adversary possessing the corresponding private key may log in as an existing user via SSH.(Citation: Venafi SSH Key Abuse)(Citation: Cybereason Linux Exim Worm)
+
+Where authorized_keys files are modified via cloud APIs or command line interfaces, an adversary may achieve privilege escalation on the target virtual machine if they add a key to a higher-privileged user. 
+
+Detection:
+Use file integrity monitoring to detect changes made to the <code>authorized_keys</code> file for each user on a system. Monitor for suspicious processes modifying the <code>authorized_keys</code> file. In cloud environments, monitor instances for modification of metadata and configurations.
+
+Monitor for changes to and suspicious processes modifiying <code>/etc/ssh/sshd_config</code>.
+
+Tactics: persistence
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Blachman, Y. (2020, April 22). Growing Abuse of SSH Keys: Commodity Malware Campaigns Now Equipped with SSH Capabilities. Retrieved June 24, 2020. [https://www.venafi.com/blog/growing-abuse-ssh-keys-commodity-malware-campaigns-now-equipped-ssh-capabilities]
+- Chris Moberly. (2020, February 12). Tutorial on privilege escalation and post exploitation tactics in Google Cloud Platform environments. Retrieved April 1, 2022. [https://about.gitlab.com/blog/2020/02/12/plundering-gcp-escalating-privileges-in-google-cloud-platform/]
+- Cybereason Nocturnus. (2019, June 13). New Pervasive Worm Exploiting Linux Exim Server Vulnerability. Retrieved June 24, 2020. [https://www.cybereason.com/blog/new-pervasive-worm-exploiting-linux-exim-server-vulnerability]
+- Google Cloud. (2022, March 31). gcloud compute instances add-metadata. Retrieved April 1, 2022. [https://cloud.google.com/sdk/gcloud/reference/compute/instances/add-metadata]
+- Microsoft. (n.d.). Virtual Machines - Update. Retrieved April 1, 2022. [https://docs.microsoft.com/en-us/rest/api/compute/virtual-machines/update]
+- ssh.com. (n.d.). Authorized_keys File in SSH. Retrieved June 24, 2020. [https://www.ssh.com/ssh/authorized_keys/]
+

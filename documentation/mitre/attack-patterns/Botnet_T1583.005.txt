@@ -1,0 +1,19 @@
+MITRE ATT&CK Technique: Botnet (T1583.005)
+
+Description:
+Adversaries may buy, lease, or rent a network of compromised systems that can be used during targeting. A botnet is a network of compromised systems that can be instructed to perform coordinated tasks.(Citation: Norton Botnet) Adversaries may purchase a subscription to use an existing botnet from a booter/stresser service. With a botnet at their disposal, adversaries may perform follow-on activity such as large-scale [Phishing](https://attack.mitre.org/techniques/T1566) or Distributed Denial of Service (DDoS).(Citation: Imperva DDoS for Hire)(Citation: Krebs-Anna)(Citation: Krebs-Bazaar)(Citation: Krebs-Booter)
+
+Detection:
+Much of this activity will take place outside the visibility of the target organization, making detection of this behavior difficult. Detection efforts may be focused on related stages of the adversary lifecycle, such as during [Phishing](https://attack.mitre.org/techniques/T1566), [Endpoint Denial of Service](https://attack.mitre.org/techniques/T1499), or [Network Denial of Service](https://attack.mitre.org/techniques/T1498).
+
+Tactics: resource-development
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Norton. (n.d.). What is a botnet?. Retrieved October 4, 2020. [https://us.norton.com/internetsecurity-malware-what-is-a-botnet.html]
+- Imperva. (n.d.). Booters, Stressers and DDoSers. Retrieved October 4, 2020. [https://www.imperva.com/learn/ddos/booters-stressers-ddosers/]
+- Brian Krebs. (2017, January 18). Who is Anna-Senpai, the Mirai Worm Author?. Retrieved May 15, 2017. [https://krebsonsecurity.com/2017/01/who-is-anna-senpai-the-mirai-worm-author/]
+- Brian Krebs. (2016, October 31). Hackforums Shutters Booter Service Bazaar. Retrieved May 15, 2017. [https://krebsonsecurity.com/2016/10/hackforums-shutters-booter-service-bazaar/]
+- Brian Krebs. (2016, October 27). Are the Days of “Booter” Services Numbered?. Retrieved May 15, 2017. [https://krebsonsecurity.com/2016/10/are-the-days-of-booter-services-numbered/]
+

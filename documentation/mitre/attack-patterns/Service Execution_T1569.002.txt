@@ -1,0 +1,20 @@
+MITRE ATT&CK Technique: Service Execution (T1569.002)
+
+Description:
+Adversaries may abuse the Windows service control manager to execute malicious commands or payloads. The Windows service control manager (<code>services.exe</code>) is an interface to manage and manipulate services.(Citation: Microsoft Service Control Manager) The service control manager is accessible to users via GUI components as well as system utilities such as <code>sc.exe</code> and [Net](https://attack.mitre.org/software/S0039).
+
+[PsExec](https://attack.mitre.org/software/S0029) can also be used to execute commands or payloads via a temporary Windows service created through the service control manager API.(Citation: Russinovich Sysinternals) Tools such as [PsExec](https://attack.mitre.org/software/S0029) and <code>sc.exe</code> can accept remote servers as arguments and may be used to conduct remote execution.
+
+Adversaries may leverage these mechanisms to execute malicious content. This can be done by either executing a new or modified service. This technique is the execution used in conjunction with [Windows Service](https://attack.mitre.org/techniques/T1543/003) during service persistence or privilege escalation.
+
+Detection:
+Changes to service Registry entries and command line invocation of tools capable of modifying services that do not correlate with known software, patch cycles, etc., may be suspicious. If a service is used only to execute a binary or script and not to persist, then it will likely be changed back to its original form shortly after the service is restarted so the service is not left broken, as is the case with the common administrator tool [PsExec](https://attack.mitre.org/software/S0029).
+
+Tactics: execution
+Required Permissions: Administrator
+Effective Permissions: SYSTEM
+
+References:
+- Microsoft. (2018, May 31). Service Control Manager. Retrieved March 28, 2020. [https://docs.microsoft.com/windows/win32/services/service-control-manager]
+- Russinovich, M. (2014, May 2). Windows Sysinternals PsExec v2.11. Retrieved May 13, 2015. [https://technet.microsoft.com/en-us/sysinternals/bb897553.aspx]
+

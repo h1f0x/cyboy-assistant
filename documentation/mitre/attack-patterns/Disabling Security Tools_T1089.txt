@@ -1,0 +1,14 @@
+MITRE ATT&CK Technique: Disabling Security Tools (T1089)
+
+Description:
+Adversaries may disable security tools to avoid possible detection of their tools and activities. This can take the form of killing security software or event logging processes, deleting Registry keys so that tools do not start at run time, or other methods to interfere with security scanning or event reporting.
+
+Detection:
+Monitor processes and command-line arguments to see if security tools are killed or stop running. Monitor Registry edits for modifications to services and startup programs that correspond to security tools. Lack of log or event file reporting may be suspicious.
+
+Tactics: defense-evasion
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+

@@ -1,0 +1,20 @@
+MITRE ATT&CK Technique: Windows Remote Management (T1021.006)
+
+Description:
+Adversaries may use [Valid Accounts](https://attack.mitre.org/techniques/T1078) to interact with remote systems using Windows Remote Management (WinRM). The adversary may then perform actions as the logged-on user.
+
+WinRM is the name of both a Windows service and a protocol that allows a user to interact with a remote system (e.g., run an executable, modify the Registry, modify services).(Citation: Microsoft WinRM) It may be called with the `winrm` command or by any number of programs such as PowerShell.(Citation: Jacobsen 2014) WinRM  can be used as a method of remotely interacting with [Windows Management Instrumentation](https://attack.mitre.org/techniques/T1047).(Citation: MSDN WMI)
+
+Detection:
+Monitor use of WinRM within an environment by tracking service execution. If it is not normally used or is disabled, then this may be an indicator of suspicious behavior.  Monitor processes created and actions taken by the WinRM process or a WinRM invoked script to correlate it with other related events.(Citation: Medium Detecting Lateral Movement) Also monitor for remote WMI connection attempts (typically over port 5985 when using HTTP and 5986 for HTTPS).
+
+Tactics: lateral-movement
+Required Permissions: User
+Effective Permissions: Administrator
+
+References:
+- Microsoft. (n.d.). Windows Remote Management. Retrieved November 12, 2014. [http://msdn.microsoft.com/en-us/library/aa384426]
+- Jacobsen, K. (2014, May 16). Lateral Movement with PowerShell&#91;slides&#93;. Retrieved November 12, 2014. [https://www.slideshare.net/kieranjacobsen/lateral-movement-with-power-shell-2]
+- Microsoft. (n.d.). Windows Management Instrumentation. Retrieved April 27, 2016. [https://msdn.microsoft.com/en-us/library/aa394582.aspx]
+- French, D. (2018, September 30). Detecting Lateral Movement Using Sysmon and Splunk. Retrieved October 11, 2019. [https://medium.com/threatpunter/detecting-lateral-movement-using-sysmon-and-splunk-318d3be141bc]
+

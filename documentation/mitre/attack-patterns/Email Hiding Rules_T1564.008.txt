@@ -1,0 +1,26 @@
+MITRE ATT&CK Technique: Email Hiding Rules (T1564.008)
+
+Description:
+Adversaries may use email rules to hide inbound emails in a compromised user's mailbox. Many email clients allow users to create inbox rules for various email functions, including moving emails to other folders, marking emails as read, or deleting emails. Rules may be created or modified within email clients or through external features such as the <code>New-InboxRule</code> or <code>Set-InboxRule</code> [PowerShell](https://attack.mitre.org/techniques/T1059/001) cmdlets on Windows systems.(Citation: Microsoft Inbox Rules)(Citation: MacOS Email Rules)(Citation: Microsoft New-InboxRule)(Citation: Microsoft Set-InboxRule)
+
+Adversaries may utilize email rules within a compromised user's mailbox to delete and/or move emails to less noticeable folders. Adversaries may do this to hide security alerts, C2 communication, or responses to [Internal Spearphishing](https://attack.mitre.org/techniques/T1534) emails sent from the compromised account.
+
+Any user or administrator within the organization (or adversary with valid credentials) may be able to create rules to automatically move or delete emails. These rules can be abused to impair/delay detection had the email content been immediately seen by a user or defender. Malicious rules commonly filter out emails based on key words (such as <code>malware</code>, <code>suspicious</code>, <code>phish</code>, and <code>hack</code>) found in message bodies and subject lines. (Citation: Microsoft Cloud App Security)
+
+Detection:
+Monitor email clients and applications for suspicious activity, such as missing messages or abnormal configuration and/or log entries.
+
+On Windows systems, monitor for creation of suspicious inbox rules through the use of the <code>New-InboxRule</code> and <code>Set-InboxRule</code> PowerShell cmdlets.(Citation: Microsoft BEC Campaign) On MacOS systems, monitor for modifications to the <code>RulesActiveState.plist</code>, <code>SyncedRules.plist</code>, <code>UnsyncedRules.plist</code>, and <code>MessageRules.plist</code> files.(Citation: MacOS Email Rules)
+
+Tactics: defense-evasion
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Apple. (n.d.). Use rules to manage emails you receive in Mail on Mac. Retrieved June 14, 2021. [https://support.apple.com/guide/mail/use-rules-to-manage-emails-you-receive-mlhlp1017/mac]
+- Carr, N., Sellmer, S. (2021, June 14). Behind the scenes of business email compromise: Using cross-domain threat data to disrupt a large BEC campaign. Retrieved June 15, 2021. [https://www.microsoft.com/security/blog/2021/06/14/behind-the-scenes-of-business-email-compromise-using-cross-domain-threat-data-to-disrupt-a-large-bec-infrastructure/]
+- Microsoft. (n.d.). Manage email messages by using rules. Retrieved June 11, 2021. [https://support.microsoft.com/en-us/office/manage-email-messages-by-using-rules-c24f5dea-9465-4df4-ad17-a50704d66c59]
+- Microsoft. (n.d.). New-InboxRule. Retrieved June 7, 2021. [https://docs.microsoft.com/en-us/powershell/module/exchange/new-inboxrule?view=exchange-ps]
+- Microsoft. (n.d.). Set-InboxRule. Retrieved June 7, 2021. [https://docs.microsoft.com/en-us/powershell/module/exchange/set-inboxrule?view=exchange-ps]
+- Niv Goldenberg. (2018, December 12). Rule your inbox with Microsoft Cloud App Security. Retrieved June 7, 2021. [https://techcommunity.microsoft.com/t5/security-compliance-and-identity/rule-your-inbox-with-microsoft-cloud-app-security/ba-p/299154]
+

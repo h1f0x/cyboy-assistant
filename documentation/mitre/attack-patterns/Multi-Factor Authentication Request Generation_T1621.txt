@@ -1,0 +1,21 @@
+MITRE ATT&CK Technique: Multi-Factor Authentication Request Generation (T1621)
+
+Description:
+Adversaries may attempt to bypass multi-factor authentication (MFA) mechanisms and gain access to accounts by generating MFA requests sent to users.
+
+Adversaries in possession credentials to [Valid Accounts](https://attack.mitre.org/techniques/T1078) may be unable to complete the login process if they lack access to the 2FA or MFA mechanisms required as an additional credential and security control. To circumvent this, adversaries may abuse the automatic generation of push notifications to MFA services such as Duo Push, Microsoft Authenticator, Okta, or similar services to have the user grant access to their account.
+
+In some cases, adversaries may continuously repeat login attempts in order to bombard users with MFA push notifications, SMS messages, and phone calls, potentially resulting in the user finally accepting the authentication request in response to “MFA fatigue.”(Citation: Russian 2FA Push Annoyance - Cimpanu)(Citation: MFA Fatigue Attacks - PortSwigger)(Citation: Suspected Russian Activity Targeting Government and Business Entities Around the Globe)
+
+Detection:
+Monitor user account logs as well as 2FA/MFA application logs for suspicious events: unusual login attempt source location, mismatch in location of login attempt and smart device receiving 2FA/MFA request prompts, and high volume of repeated login attempts, all of which may indicate user's primary credentials have been compromised minus 2FA/MFA mechanism. 
+
+Tactics: credential-access
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Catalin Cimpanu. (2021, December 9). Russian hackers bypass 2FA by annoying victims with repeated push notifications. Retrieved March 31, 2022. [https://therecord.media/russian-hackers-bypass-2fa-by-annoying-victims-with-repeated-push-notifications/]
+- Jessica Haworth. (2022, February 16). MFA fatigue attacks: Users tricked into allowing device access due to overload of push notifications. Retrieved March 31, 2022. [https://portswigger.net/daily-swig/mfa-fatigue-attacks-users-tricked-into-allowing-device-access-due-to-overload-of-push-notifications]
+- Luke Jenkins, Sarah Hawley, Parnian Najafi, Doug Bienstock. (2021, December 6). Suspected Russian Activity Targeting Government and Business Entities Around the Globe. Retrieved April 15, 2022. [https://www.mandiant.com/resources/russian-targeting-gov-business]
+

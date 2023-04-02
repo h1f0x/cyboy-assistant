@@ -1,0 +1,24 @@
+MITRE ATT&CK Technique: Launchctl (T1569.001)
+
+Description:
+Adversaries may abuse launchctl to execute commands or programs. Launchctl interfaces with launchd, the service management framework for macOS. Launchctl supports taking subcommands on the command-line, interactively, or even redirected from standard input.(Citation: Launchctl Man)
+
+Adversaries use launchctl to execute commands and programs as [Launch Agent](https://attack.mitre.org/techniques/T1543/001)s or [Launch Daemon](https://attack.mitre.org/techniques/T1543/004)s. Common subcommands include: <code>launchctl load</code>,<code>launchctl unload</code>, and <code>launchctl start</code>. Adversaries can use scripts or manually run the commands <code>launchctl load -w "%s/Library/LaunchAgents/%s"</code> or <code>/bin/launchctl load</code> to execute [Launch Agent](https://attack.mitre.org/techniques/T1543/001)s or [Launch Daemon](https://attack.mitre.org/techniques/T1543/004)s.(Citation: Sofacy Komplex Trojan)(Citation: 20 macOS Common Tools and Techniques)
+
+
+Detection:
+Every Launch Agent and Launch Daemon must have a corresponding plist file on disk which can be monitored. Monitor for recently modified or created plist files with a significant change to the executable path executed with the command-line <code>launchctl</code> command. Plist files are located in the root, system, and users <code>/Library/LaunchAgents</code> or <code>/Library/LaunchDaemons</code> folders. 
+
+Monitor command-line execution of the <code>launchctl</code> command immediately followed by abnormal network connections. [Launch Agent](https://attack.mitre.org/techniques/T1543/001)s or [Launch Daemon](https://attack.mitre.org/techniques/T1543/004)s with executable paths pointing to <code>/tmp</code> and <code>/Shared</code> folders locations are potentially suspicious. 
+
+When removing [Launch Agent](https://attack.mitre.org/techniques/T1543/001)s or [Launch Daemon](https://attack.mitre.org/techniques/T1543/004)s ensure the services are unloaded prior to deleting plist files.
+
+Tactics: execution
+Required Permissions: User
+Effective Permissions: root
+
+References:
+- SS64. (n.d.). launchctl. Retrieved March 28, 2020. [https://ss64.com/osx/launchctl.html]
+- Dani Creus, Tyler Halfpop, Robert Falcone. (2016, September 26). Sofacy's 'Komplex' OS X Trojan. Retrieved July 8, 2017. [https://researchcenter.paloaltonetworks.com/2016/09/unit42-sofacys-komplex-os-x-trojan/]
+- Phil Stokes. (2021, February 16). 20 Common Tools & Techniques Used by macOS Threat Actors & Malware. Retrieved August 23, 2021. [https://labs.sentinelone.com/20-common-tools-techniques-used-by-macos-threat-actors-malware/]
+

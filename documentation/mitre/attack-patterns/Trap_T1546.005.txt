@@ -1,0 +1,18 @@
+MITRE ATT&CK Technique: Trap (T1546.005)
+
+Description:
+Adversaries may establish persistence by executing malicious content triggered by an interrupt signal. The <code>trap</code> command allows programs and shells to specify commands that will be executed upon receiving interrupt signals. A common situation is a script allowing for graceful termination and handling of common keyboard interrupts like <code>ctrl+c</code> and <code>ctrl+d</code>.
+
+Adversaries can use this to register code to be executed when the shell encounters specific interrupts as a persistence mechanism. Trap commands are of the following format <code>trap 'command list' signals</code> where "command list" will be executed when "signals" are received.(Citation: Trap Manual)(Citation: Cyberciti Trap Statements)
+
+Detection:
+Trap commands must be registered for the shell or programs, so they appear in files. Monitoring files for suspicious or overly broad trap commands can narrow down suspicious behavior during an investigation. Monitor for suspicious processes executed through trap interrupts.
+
+Tactics: privilege-escalation, persistence
+Required Permissions: User
+Effective Permissions: Administrator
+
+References:
+- ss64. (n.d.). trap. Retrieved May 21, 2019. [https://ss64.com/bash/trap.html]
+- Cyberciti. (2016, March 29). Trap statement. Retrieved May 21, 2019. [https://bash.cyberciti.biz/guide/Trap_statement]
+

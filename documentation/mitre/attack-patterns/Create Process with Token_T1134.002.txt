@@ -1,0 +1,22 @@
+MITRE ATT&CK Technique: Create Process with Token (T1134.002)
+
+Description:
+Adversaries may create a new process with a different token to escalate privileges and bypass access controls. Processes can be created with the token and resulting security context of another user using features such as <code>CreateProcessWithTokenW</code> and <code>runas</code>.(Citation: Microsoft RunAs)
+
+Creating processes with a different token may require the credentials of the target user, specific privileges to impersonate that user, or access to the token to be used (ex: gathered via other means such as [Token Impersonation/Theft](https://attack.mitre.org/techniques/T1134/001) or [Make and Impersonate Token](https://attack.mitre.org/techniques/T1134/003)).
+
+Detection:
+If an adversary is using a standard command-line shell (i.e. [Windows Command Shell](https://attack.mitre.org/techniques/T1059/003)), analysts may detect token manipulation by auditing command-line activity. Specifically, analysts should look for use of the <code>runas</code> command or similar artifacts. Detailed command-line logging is not enabled by default in Windows.(Citation: Microsoft Command-line Logging)
+
+If an adversary is using a payload that calls the Windows token APIs directly, analysts may detect token manipulation only through careful analysis of user activity, examination of running processes, and correlation with other endpoint and network behavior.
+
+Analysts can also monitor for use of Windows APIs such as <code>CreateProcessWithTokenW</code> and correlate activity with other suspicious behavior to reduce false positives that may be due to normal benign use by users and administrators.
+
+Tactics: defense-evasion, privilege-escalation
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Microsoft. (2016, August 31). Runas. Retrieved October 1, 2021. [https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771525(v=ws.11)]
+- Mathers, B. (2017, March 7). Command line process auditing. Retrieved April 21, 2017. [https://technet.microsoft.com/en-us/windows-server-docs/identity/ad-ds/manage/component-updates/command-line-process-auditing]
+

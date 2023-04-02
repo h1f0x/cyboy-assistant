@@ -1,0 +1,18 @@
+MITRE ATT&CK Technique: Clipboard Data (T1115)
+
+Description:
+Adversaries may collect data stored in the clipboard from users copying information within or between applications. 
+
+In Windows, Applications can access clipboard data by using the Windows API.(Citation: MSDN Clipboard) OSX provides a native command, <code>pbpaste</code>, to grab clipboard contents.(Citation: Operating with EmPyre)
+
+Detection:
+Access to the clipboard is a legitimate function of many applications on an operating system. If an organization chooses to monitor for this behavior, then the data will likely need to be correlated against other suspicious or non-user-driven activity.
+
+Tactics: collection
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Microsoft. (n.d.). About the Clipboard. Retrieved March 29, 2016. [https://msdn.microsoft.com/en-us/library/ms649012]
+- rvrsh3ll. (2016, May 18). Operating with EmPyre. Retrieved July 12, 2017. [https://medium.com/rvrsh3ll/operating-with-empyre-ea764eda3363]
+

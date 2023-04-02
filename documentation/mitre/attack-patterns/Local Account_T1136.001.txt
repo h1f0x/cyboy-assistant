@@ -1,0 +1,17 @@
+MITRE ATT&CK Technique: Local Account (T1136.001)
+
+Description:
+Adversaries may create a local account to maintain access to victim systems. Local accounts are those configured by an organization for use by users, remote support, services, or for administration on a single system or service. With a sufficient level of access, the <code>net user /add</code> command can be used to create a local account. On macOS systems the <code>dscl -create</code> command can be used to create a local account.
+
+Such accounts may be used to establish secondary credentialed access that do not require persistent remote access tools to be deployed on the system.
+
+Detection:
+Monitor for processes and command-line parameters associated with local account creation, such as <code>net user /add</code> , <code>useradd</code> , and <code>dscl -create</code> . Collect data on account creation within a network. Event ID 4720 is generated when a user account is created on a Windows system. (Citation: Microsoft User Creation Event) Perform regular audits of local system accounts to detect suspicious accounts that may have been created by an adversary.
+
+Tactics: persistence
+Required Permissions: Administrator
+Effective Permissions: Unknown
+
+References:
+- Lich, B., Miroshnikov, A. (2017, April 5). 4720(S): A user account was created. Retrieved June 30, 2017. [https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4720]
+

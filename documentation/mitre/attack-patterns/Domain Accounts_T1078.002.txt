@@ -1,0 +1,24 @@
+MITRE ATT&CK Technique: Domain Accounts (T1078.002)
+
+Description:
+Adversaries may obtain and abuse credentials of a domain account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion.(Citation: TechNet Credential Theft) Domain accounts are those managed by Active Directory Domain Services where access and permissions are configured across systems and services that are part of that domain. Domain accounts can cover users, administrators, and services.(Citation: Microsoft AD Accounts)
+
+Adversaries may compromise domain accounts, some with a high level of privileges, through various means such as [OS Credential Dumping](https://attack.mitre.org/techniques/T1003) or password reuse, allowing access to privileged resources of the domain.
+
+Detection:
+Configure robust, consistent account activity audit policies across the enterprise and with externally accessible services.(Citation: TechNet Audit Policy) Look for suspicious account behavior across systems that share accounts, either user, admin, or service accounts. Examples: one account logged into multiple systems simultaneously; multiple accounts logged into the same machine simultaneously; accounts logged in at odd times or outside of business hours. Activity may be from interactive login sessions or process ownership from accounts being used to execute binaries on a remote system as a particular account. Correlate other security systems with login information (e.g., a user has an active login session but has not entered the building or does not have VPN access).
+
+On Linux, check logs and other artifacts created by use of domain authentication services, such as the System Security Services Daemon (sssd).(Citation: Ubuntu SSSD Docs) 
+
+Perform regular audits of domain accounts to detect accounts that may have been created by an adversary for persistence.
+
+Tactics: defense-evasion, persistence, privilege-escalation, initial-access
+Required Permissions: User
+Effective Permissions: Administrator
+
+References:
+- Microsoft. (2016, April 15). Attractive Accounts for Credential Theft. Retrieved June 3, 2016. [https://technet.microsoft.com/en-us/library/dn535501.aspx]
+- Microsoft. (2016, April 15). Audit Policy Recommendations. Retrieved June 3, 2016. [https://technet.microsoft.com/en-us/library/dn487457.aspx]
+- Microsoft. (2019, August 23). Active Directory Accounts. Retrieved March 13, 2020. [https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-accounts]
+- Ubuntu. (n.d.). SSSD. Retrieved September 23, 2021. [https://ubuntu.com/server/docs/service-sssd]
+

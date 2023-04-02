@@ -1,0 +1,16 @@
+MITRE ATT&CK Technique: System Script Proxy Execution (T1216)
+
+Description:
+Adversaries may use trusted scripts, often signed with certificates, to proxy the execution of malicious files. Several Microsoft signed scripts that have been downloaded from Microsoft or are default on Windows installations can be used to proxy execution of other files.(Citation: LOLBAS Project) This behavior may be abused by adversaries to execute malicious files that could bypass application control and signature validation on systems.(Citation: GitHub Ultimate AppLocker Bypass List)
+
+Detection:
+Monitor script processes, such as `cscript`, and command-line parameters for scripts like PubPrn.vbs that may be used to proxy execution of malicious files.
+
+Tactics: defense-evasion
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Moe, O. (2018, March 1). Ultimate AppLocker Bypass List. Retrieved April 10, 2018. [https://github.com/api0cradle/UltimateAppLockerByPassList]
+- Oddvar Moe et al. (2022, February).  Living Off The Land Binaries, Scripts and Libraries. Retrieved March 7, 2022. [https://github.com/LOLBAS-Project/LOLBAS#criteria]
+

@@ -1,0 +1,19 @@
+MITRE ATT&CK Technique: Authentication Package (T1131)
+
+Description:
+Windows Authentication Package DLLs are loaded by the Local Security Authority (LSA) process at system start. They provide support for multiple logon processes and multiple security protocols to the operating system. (Citation: MSDN Authentication Packages)
+
+Adversaries can use the autostart mechanism provided by LSA Authentication Packages for persistence by placing a reference to a binary in the Windows Registry location <code>HKLM\SYSTEM\CurrentControlSet\Control\Lsa\</code> with the key value of <code>"Authentication Packages"=<target binary></code>. The binary will then be executed by the system when the authentication packages are loaded.
+
+Detection:
+Monitor the Registry for changes to the LSA Registry keys. Monitor the LSA process for DLL loads. Windows 8.1 and Windows Server 2012 R2 may generate events when unsigned DLLs try to load into the LSA by setting the Registry key <code>HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe</code> with AuditLevel = 8. (Citation: Graeber 2014) (Citation: Microsoft Configure LSA)
+
+Tactics: persistence
+Required Permissions: Administrator
+Effective Permissions: Unknown
+
+References:
+- Microsoft. (n.d.). Authentication Packages. Retrieved March 1, 2017. [https://msdn.microsoft.com/library/windows/desktop/aa374733.aspx]
+- Graeber, M. (2014, October). Analysis of Malicious Security Support Provider DLLs. Retrieved March 1, 2017. [http://docplayer.net/20839173-Analysis-of-malicious-security-support-provider-dlls.html]
+- Microsoft. (2013, July 31). Configuring Additional LSA Protection. Retrieved June 24, 2015. [https://technet.microsoft.com/en-us/library/dn408187.aspx]
+

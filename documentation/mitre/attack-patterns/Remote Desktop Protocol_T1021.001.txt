@@ -1,0 +1,20 @@
+MITRE ATT&CK Technique: Remote Desktop Protocol (T1021.001)
+
+Description:
+Adversaries may use [Valid Accounts](https://attack.mitre.org/techniques/T1078) to log into a computer using the Remote Desktop Protocol (RDP). The adversary may then perform actions as the logged-on user.
+
+Remote desktop is a common feature in operating systems. It allows a user to log into an interactive session with a system desktop graphical user interface on a remote system. Microsoft refers to its implementation of the Remote Desktop Protocol (RDP) as Remote Desktop Services (RDS).(Citation: TechNet Remote Desktop Services) 
+
+Adversaries may connect to a remote system over RDP/RDS to expand access if the service is enabled and allows access to accounts with known credentials. Adversaries will likely use Credential Access techniques to acquire credentials to use with RDP. Adversaries may also use RDP in conjunction with the [Accessibility Features](https://attack.mitre.org/techniques/T1546/008) or [Terminal Services DLL](https://attack.mitre.org/techniques/T1505/005) for Persistence.(Citation: Alperovitch Malware)
+
+Detection:
+Use of RDP may be legitimate, depending on the network environment and how it is used. Other factors, such as access patterns and activity that occurs after a remote login, may indicate suspicious or malicious behavior with RDP. Monitor for user accounts logged into systems they would not normally access or access patterns to multiple systems over a relatively short period of time.
+
+Tactics: lateral-movement
+Required Permissions: Remote Desktop Users
+Effective Permissions: User
+
+References:
+- Microsoft. (n.d.). Remote Desktop Services. Retrieved June 1, 2016. [https://technet.microsoft.com/en-us/windowsserver/ee236407.aspx]
+- Alperovitch, D. (2014, October 31). Malware-Free Intrusions. Retrieved November 4, 2014. [http://blog.crowdstrike.com/adversary-tricks-crowdstrike-treats/]
+

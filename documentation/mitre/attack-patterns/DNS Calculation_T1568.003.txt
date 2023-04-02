@@ -1,0 +1,19 @@
+MITRE ATT&CK Technique: DNS Calculation (T1568.003)
+
+Description:
+Adversaries may perform calculations on addresses returned in DNS results to determine which port and IP address to use for command and control, rather than relying on a predetermined port number or the actual returned IP address. A IP and/or port number calculation can be used to bypass egress filtering on a C2 channel.(Citation: Meyers Numbered Panda)
+
+One implementation of [DNS Calculation](https://attack.mitre.org/techniques/T1568/003) is to take the first three octets of an IP address in a DNS response and use those values to calculate the port for command and control traffic.(Citation: Meyers Numbered Panda)(Citation: Moran 2014)(Citation: Rapid7G20Espionage)
+
+Detection:
+Detection for this technique is difficult because it would require knowledge of the specific implementation of the port calculation algorithm. Detection may be possible by analyzing DNS records if the algorithm is known.
+
+Tactics: command-and-control
+Required Permissions: Unknown
+Effective Permissions: Unknown
+
+References:
+- Meyers, A. (2013, March 29). Whois Numbered Panda. Retrieved January 14, 2016. [http://www.crowdstrike.com/blog/whois-numbered-panda/]
+- Moran, N., Oppenheim, M., Engle, S., & Wartell, R.. (2014, September 3). Darwin’s Favorite APT Group &#91;Blog&#93;. Retrieved November 12, 2014. [https://www.fireeye.com/blog/threat-research/2014/09/darwins-favorite-apt-group-2.html]
+- Rapid7. (2013, August 26). Upcoming G20 Summit Fuels Espionage Operations. Retrieved March 6, 2017. [https://blog.rapid7.com/2013/08/26/upcoming-g20-summit-fuels-espionage-operations/]
+
