@@ -6,7 +6,7 @@ import gradio as gr
 import torch
 import transformers
 from peft import PeftModel
-from transformers import LlamaForCausalLM, LlamaTokenizer
+from transformers import GenerationConfig, LlamaForCausalLM, LlamaTokenizer
 
 from utils.prompter import Prompter
 from typing import Optional, List, Mapping, Any
@@ -104,7 +104,7 @@ def main(
             task='text-generation',
             model=model,
             tokenizer=tokenizer,
-            device="cuda:0",
+            device=device,
         )
         temperature = 0.4
         top_p = 0.75
@@ -154,14 +154,14 @@ def main(
         documents, service_context=service_context)
 
     def evaluate(
-        instruction,
-        input=None,
-        temperature=0.1,
-        top_p=0.75,
-        top_k=40,
-        num_beams=4,
-        max_new_tokens=128,
-        **kwargs,
+            instruction,
+            input=None,
+            temperature=0.1,
+            top_p=0.75,
+            top_k=40,
+            num_beams=4,
+            max_new_tokens=128,
+            **kwargs,
     ):
         return index.query(instruction)
 

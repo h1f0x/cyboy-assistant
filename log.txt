@@ -1,0 +1,42 @@
+19:50:22,929 root INFO cuda is available: False
+19:50:24,866 root INFO Debug log 1
+19:50:28,312 root INFO Debug log 2
+19:50:28,312 root INFO Debug log 3
+19:50:28,313 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total LLM token usage: 0 tokens
+19:50:28,313 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total embedding token usage: 0 tokens
+19:50:28,317 llama_index.token_counter.token_counter INFO > [query] Total LLM token usage: 0 tokens
+19:50:28,318 llama_index.token_counter.token_counter INFO > [query] Total embedding token usage: 0 tokens
+19:50:28,318 root INFO response
+19:53:15,905 root INFO cuda is available: False
+19:53:17,863 root INFO Debug log 1
+19:53:19,663 root INFO Debug log 2
+19:53:19,668 root INFO Debug log 3
+19:53:19,669 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total LLM token usage: 0 tokens
+19:53:19,669 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total embedding token usage: 0 tokens
+19:53:19,673 llama_index.token_counter.token_counter INFO > [query] Total LLM token usage: 0 tokens
+19:53:19,673 llama_index.token_counter.token_counter INFO > [query] Total embedding token usage: 0 tokens
+19:53:19,674 root INFO response
+19:19:19,847 root INFO cuda is available: False
+19:19:21,922 root INFO Debug log 1
+19:19:27,5 root INFO Debug log 2
+19:19:27,5 root INFO Debug log 3
+19:19:27,7 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total LLM token usage: 0 tokens
+19:19:27,7 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total embedding token usage: 0 tokens
+19:19:27,12 llama_index.token_counter.token_counter INFO > [query] Total LLM token usage: 0 tokens
+19:19:27,12 llama_index.token_counter.token_counter INFO > [query] Total embedding token usage: 0 tokens
+19:19:27,12 root INFO response
+19:20:50,585 root INFO cuda is available: False
+19:20:52,568 root INFO Debug log 1
+19:20:54,658 root INFO Debug log 2
+19:20:54,659 root INFO Debug log 3
+19:20:54,660 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total LLM token usage: 0 tokens
+19:20:54,660 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total embedding token usage: 0 tokens
+19:21:24,381 root INFO cuda is available: False
+19:21:26,356 root INFO Debug log 1
+19:21:28,332 root INFO Debug log 2
+19:21:28,332 root INFO Debug log 3
+19:21:28,333 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total LLM token usage: 0 tokens
+19:21:28,333 llama_index.token_counter.token_counter INFO > [build_index_from_nodes] Total embedding token usage: 0 tokens
+19:21:28,338 llama_index.token_counter.token_counter INFO > [query] Total LLM token usage: 0 tokens
+19:21:28,338 llama_index.token_counter.token_counter INFO > [query] Total embedding token usage: 0 tokens
+19:21:28,338 root INFO response

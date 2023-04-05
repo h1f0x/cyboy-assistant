@@ -12,4 +12,4 @@ sentencepiece
 gradio
 sentencepiece
 llama-index
-pypdf2
+pypdf2pip
